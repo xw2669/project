@@ -19,4 +19,5 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sightings/',include('tracker.urls')),
+    path('map/',include('tracker.map_urls')),
 ]
