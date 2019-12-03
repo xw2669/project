@@ -22,9 +22,4 @@ def stats(request):
 	long_attr = data.aggregate(min_longitude = Min('longitude'))
 	la_attr = data.aggregate(min_latitude = Min('latitude'))
 	date_attr = data.aggregate(min_date = Min('date'))
-	age_attr = list(data.values_list('age').annotate(Count('age')))
-	color_attr = list(data.values_list('primary_fur_color').annotate(Count('primary_fur_color')))
-	return render(request, 'sightings/stats.html',{"long_attr":long_attr,"la_attr":la_attr,"date_attr":date_attr,
-		"age_attr":age_attr,
-		"color_attr":color_attr
-		})
+	return render(request, 'sightings/stats.html',{"long_attr":long_attr,"la_attr":la_attr,"date_attr":date_attr})
