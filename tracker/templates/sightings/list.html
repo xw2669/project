@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <body>
-
-    <table border=1>
+    <a href="/sightings/add">ADD Squirrel Data</a>
+    <br>
+    <a href="/sightings/stats">Squirrel Statistics</a>
+    <table border=1 bgcolor="#f1d2e1" width=2800>
       <tr>
         <th>Latitude</th>
         <th>Longitude</th>
@@ -32,7 +34,7 @@
       <tr>
         <td>{{sighting.latitude}}</td>
         <td>{{sighting.longitude}}</td>
-        <td>{{sighting.unique_squirrel_id}}</td>
+        <td><a href="/sightings/{{sighting.unique_squirrel_id}}">{{sighting.unique_squirrel_id}}</a></td>
         <td>{{sighting.shift}}</td>
         <td>{{sighting.date}}</td>
         <td>{{sighting.age}}</td>

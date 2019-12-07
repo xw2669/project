@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
-from polls.models import Poll
+from tracker.models import Squirrel
+import csv
 
 class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
@@ -8,13 +9,11 @@ class Command(BaseCommand):
         parser.add_argument('path', type=str)
 
     def handle(self, *args, **options):
-        for poll_id in options['poll_id']:
-            try:
-                poll = Poll.objects.get(pk=poll_id)
-            except Poll.DoesNotExist:
-                raise CommandError('Poll "%s" does not exist' % poll_id)
-
-            poll.opened = False
-            poll.save()
-
-            self.stdout.write('Successfully closed poll "%s"' % poll_id)
+        path = options['path']
+        with open(path,'w',newline='') as f:
+            model = Squirrel
+            field = [_.name for _ in model._meta.fields]
+            writer = csv.writer(f,quoting=csv.QUOTE_ALL)
+            writer.writerow(field)
+            for item in model.objects.all():
+                writer.writerow([getattr(item,ins) for ins in field])
